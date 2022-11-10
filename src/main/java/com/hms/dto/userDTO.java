@@ -1,3 +1,4 @@
+//validation for user table
 package com.hms.dto;
 
 import javax.validation.constraints.Email;
@@ -7,7 +8,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.hms.model.room;
-import com.hms.model.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

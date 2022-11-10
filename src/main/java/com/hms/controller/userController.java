@@ -4,6 +4,13 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.hms.dto.userDTO;
+import com.hms.exception.globalException;
+import com.hms.model.authRequest;
+import com.hms.model.user;
+import com.hms.serviceImpl.userServiceImpl;
+import com.hms.util.JwtUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +25,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hms.dto.userDTO;
-import com.hms.exception.globalException;
-import com.hms.model.authRequest;
-import com.hms.model.user;
-import com.hms.serviceImpl.userServiceImpl;
-import com.hms.util.JwtUtil;
-
 @RestController
 @RequestMapping("/user")
 public class userController {
@@ -37,7 +37,7 @@ public class userController {
 	
 	@Autowired
 	JwtUtil jwt;
-	
+	//mapping to post authentication
 	@PostMapping("/authentication")
 	public String generateToken(@RequestBody authRequest ar) {
 	
@@ -47,25 +47,25 @@ public class userController {
 		
 	}
 	
-	
+	// mapping to get all users
 	@GetMapping("/get")
 	public ResponseEntity<List<user>> getUsers(){	
 		List<user> userList=service.getUser();
 		return new ResponseEntity<>(userList,HttpStatus.OK);
 	}
-	
+	//mapping to post
 	@PostMapping("/add")
 	public ResponseEntity<user> addUsers(@RequestBody @Valid userDTO u1){
 		
 		return new ResponseEntity<>(service.addUser(u1),HttpStatus.ACCEPTED);
 		
 	}
-
+	//mapping to update
 	@PutMapping("/update")
 	public ResponseEntity<user> updateUser(@RequestBody @Valid userDTO u1){
 		return new ResponseEntity<>(service.updateUser(u1),HttpStatus.ACCEPTED);
 	}
-	
+	//mapping to delete
 	@DeleteMapping("/delete/{userid}")
 	public ResponseEntity<String> deleteUser(@PathVariable int userid) throws globalException{
 		
@@ -77,7 +77,7 @@ public class userController {
 			return new ResponseEntity<>(status,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+	//mapping to update userPhone
 	@PutMapping("/phone/{id}/{phone}")
 	
 	public ResponseEntity<String> updatePhone(@PathVariable int id,@PathVariable String phone) throws globalException{
@@ -85,14 +85,14 @@ public class userController {
 		return new ResponseEntity<>(service.updatePhone(id, phone),HttpStatus.OK);
 		
 	}
-	
+	//mapping to allot the room to the user
 	@PutMapping("/allotroom/{userid}/{roomid}")
 	public ResponseEntity<String> allotRoom(@PathVariable int userid,@PathVariable int roomid) throws globalException{
 		
 		return new ResponseEntity<>(service.allotRoom(userid, roomid),HttpStatus.OK);
 		
 	}
-	
+	//mapping to update the userfee
 	@PutMapping("/updatefee/{userid}/{userfee}")
 	public ResponseEntity<String> update(@PathVariable int userid,@PathVariable int userfee) throws globalException{
 		

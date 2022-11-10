@@ -3,17 +3,17 @@ package com.hms.advice;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.hms.exception.globalException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.hms.exception.globalException;
-
 @RestControllerAdvice
 public class exceptionHandler {
-
+	//response to the Exception
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	

@@ -4,6 +4,11 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.hms.dto.roomDTO;
+import com.hms.exception.globalException;
+import com.hms.model.room;
+import com.hms.serviceImpl.roomServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,37 +21,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hms.dto.roomDTO;
-import com.hms.exception.globalException;
-import com.hms.model.room;
-import com.hms.serviceImpl.roomServiceImpl;
-
 @RestController
 @RequestMapping("/room")
 public class roomController {
 
 	@Autowired
 	private roomServiceImpl service;
-	
+	// mapping ro get all
 	@GetMapping("/get")
 	public ResponseEntity<List<room>> getRooms(){
 		return new ResponseEntity<>(service.getRoom(),HttpStatus.OK);	
 	}
-	
+	// mapping to post
 	@PostMapping("/add")
 	public ResponseEntity<room> addRoom(@RequestBody @Valid roomDTO r1){
 		
 		return new ResponseEntity<>(service.addRoom(r1),HttpStatus.ACCEPTED);
 		
 	}
-	
+	// mapping tu put(update)
 	@PutMapping("/update")
 	public ResponseEntity<room> updateRoom(@RequestBody @Valid roomDTO r1){
 		
 		return new ResponseEntity<>(service.updateRoom(r1),HttpStatus.ACCEPTED);
 		
 	}
-	
+	//mapping to delete
 	@DeleteMapping("/delete/{roomid}")
 	public ResponseEntity<String> deleteRoom(@PathVariable int roomid) throws globalException{
 		

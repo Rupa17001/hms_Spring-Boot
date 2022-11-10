@@ -1,3 +1,4 @@
+//entity for user table
 package com.hms.model;
 
 import javax.persistence.Entity;

@@ -1,3 +1,4 @@
+//Entity of room table
 package com.hms.model;
 
 import javax.persistence.Entity;

@@ -1,3 +1,4 @@
+//Authantication model
 package com.hms.model;
 
 import lombok.AllArgsConstructor;
